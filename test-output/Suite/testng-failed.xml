@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="Failed suite [Suite]" parallel="tests">
+  <parameter name="browser" value="IE"/>
+  <test name="IETest(failed)" parallel="tests">
+    <parameter name="browser" value="IE"/>
+    <classes>
+      <class name="Final">
+        <methods>
+          <include name="testing" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- Final -->
+    </classes>
+  </test> <!-- IETest(failed) -->
+</suite> <!-- Failed suite [Suite] -->
