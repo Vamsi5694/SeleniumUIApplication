@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="2" name="Failed suite [Suite]" parallel="tests">
-  <parameter name="browser" value="IE"/>
-  <test name="IETest(failed)" parallel="tests">
-    <parameter name="browser" value="IE"/>
+<suite thread-count="2" parallel="tests" name="Failed suite [Suite]">
+  <parameter name="excel" value="D:/UploadFilesDemo/Freshworks.xlsx"/>
+  <parameter name="browser" value="firefox"/>
+  <parameter name="driverPath" value="D:/office/WebDrivers/geckodriver.exe"/>
+  <test parallel="tests" name="FirefoxTest(failed)">
+    <parameter name="excel" value="D:/UploadFilesDemo/Freshworks.xlsx"/>
+    <parameter name="browser" value="firefox"/>
+    <parameter name="driverPath" value="D:/office/WebDrivers/geckodriver.exe"/>
     <classes>
-      <class name="Final">
+      <class name="Running.ExecutionTest">
         <methods>
-          <include name="testing" invocation-numbers="0"/>
+          <include name="testcases"/>
+          <include name="setup"/>
+          <include name="setup"/>
         </methods>
-      </class> <!-- Final -->
+      </class> <!-- Running.ExecutionTest -->
     </classes>
-  </test> <!-- IETest(failed) -->
+  </test> <!-- FirefoxTest(failed) -->
 </suite> <!-- Failed suite [Suite] -->

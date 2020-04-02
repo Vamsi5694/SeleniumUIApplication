@@ -2,6 +2,7 @@ package Running;
 
 import java.awt.Color;
 import java.io.File;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,6 +18,8 @@ import Application.TitlePage;
 import Application.ZipFolder;
 import Common.Browser;
 import Common.Information;
+
+
 
 public class Final implements Information{
 //	static WebDriver driver;
@@ -76,16 +79,19 @@ public List<Map<String,String>> testing(String[] imp) throws Exception{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				for(int j=2;j<=er.count(scenarios);j++){					//for loop starts
-					if(er.readData(scenarios, j, REQUIRED).equals("Y")){			// verifying whether Y is present or not in scenarios sheet
-						try {
-							er.removeCells(er.readData(scenarios, j, TESTCASENAME),Information.ACTUAL);	
-							er.removeCells(er.readData(scenarios, j, TESTCASENAME),Information.RESULT_COLUMN);			// removing result data in current testcase
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}		
+				try {
+					for(int j=2;j<=er.count(scenarios);j++){					//for loop starts
+						if(er.readData(scenarios, j, REQUIRED).equals("Y")){			// verifying whether Y is present or not in scenarios sheet
+								er.removeCells(er.readData(scenarios, j, TESTCASENAME),Information.ACTUAL);	
+								er.removeCells(er.readData(scenarios, j, TESTCASENAME),Information.RESULT_COLUMN);			// removing result data in current testcase
+						}		
+					}
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}															// for loop ends
 			}
 			

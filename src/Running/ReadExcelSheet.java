@@ -2,12 +2,16 @@ package Running;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jopendocument.dom.spreadsheet.MutableCell;
@@ -41,7 +45,7 @@ public ReadExcelSheet(String path){
 	}
 }
 @SuppressWarnings("static-access")
-public String readData(String index, int row, int cell){
+public String readData(String index, int row, int cell) throws ParseException{
 	String data;
 	if(extension.equals(".xlsx")){
 	sheet = wb.getSheet(index);
@@ -50,7 +54,18 @@ public String readData(String index, int row, int cell){
 	if(cell1 != null){
 	
 		if(cell1.getCellType()==cell1.CELL_TYPE_NUMERIC){
-			data= NumberToTextConverter.toText(cell1.getNumericCellValue());
+			if (DateUtil.isCellDateFormatted(cell1)) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+		        Date date = sdf.parse(String.valueOf(cell1));
+		        data = new SimpleDateFormat("MM-dd-yyyy").format(date);
+				return data;
+			}
+			else if (cell1.getCellStyle().getDataFormatString().trim().endsWith("%")) {
+				DecimalFormat f = new DecimalFormat("##.00");
+				Double value = cell1.getNumericCellValue() * 100;
+				return f.format(value) + "%";
+			} else
+				return String.valueOf((int) cell1.getNumericCellValue());
 		}
 		else{
 		data=cell1.toString();
