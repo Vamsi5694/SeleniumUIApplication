@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
+import AdditionalSetup.ExecutionPart;
+import AdditionalSetup.SelectExecutionOption;
 import AndroidMobile.AppiumServer;
 import Common.Information;
 import Running.Final;
@@ -293,6 +295,7 @@ public class TitlePage implements Information{
 			imp[SCENARIOS]=win.sceneResult.getText();
 			imp[XML]=win.rResult.getText();
 			FinalVerification fv=new FinalVerification();
+			SelectExecutionOption.setSelectOption(ExecutionPart.GUI);
 			boolean condition=fv.verify(win);
 			
 			try {

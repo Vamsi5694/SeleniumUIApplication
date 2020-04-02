@@ -3,15 +3,24 @@ package Running;
 import java.io.File;
 import java.io.IOException;
 
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import AdditionalSetup.ExecutionPart;
+import AdditionalSetup.SelectExecutionOption;
 import Common.Information;
 
 public class ExecutionTest implements Information {
 
 	String[] basicParams = new String[10];
+	
+	@BeforeSuite
+	public void initial() {
+		SelectExecutionOption.setSelectOption(ExecutionPart.TESTNG);
+	}
+	
 	@BeforeTest
 	@Parameters({"browser", "driverPath", "excel"})
 	public void setup(String browserName, String driverPath, String excelName) throws IOException {

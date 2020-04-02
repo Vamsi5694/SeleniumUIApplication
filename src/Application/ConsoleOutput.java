@@ -23,6 +23,9 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import AdditionalSetup.ExecutionPart;
+import AdditionalSetup.SelectExecutionOption;
+
 public class ConsoleOutput {
 	Boolean isClicked=false;
 	JToggleButton output;
@@ -238,6 +241,7 @@ public ConsoleOutput(JPanel platform) {
 }
 
 public static void addText(String text, Color color) throws BadLocationException {
+	if(SelectExecutionOption.getSelectOption() == ExecutionPart.GUI) {
 	StyledDocument doc = area.getStyledDocument();
 
 //    Style style = area.addStyle("I'm a Style", null);
@@ -255,5 +259,6 @@ public static void addText(String text, Color color) throws BadLocationException
         attributes.addAttribute(StyleConstants.CharacterConstants.Bold, true);
     }
     doc.insertString(doc.getLength(), text, attributes);
+}
 }
 }

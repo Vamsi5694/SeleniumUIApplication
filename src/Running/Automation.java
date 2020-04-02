@@ -11,13 +11,14 @@ import java.net.MalformedURLException;
 //import org.openqa.selenium.remote.DesiredCapabilities;
 //import org.openqa.selenium.remote.RemoteWebDriver;
 //import org.openqa.selenium.support.ui.Select;
+import java.text.ParseException;
 
 public class Automation {
 	static String username = "vamsi.kattamudi"; // Your username
 	static String authkey = "56bfbcfd-212e-4161-b420-ebe156531995";
 	 public static final String URL = "http://" + username + ":" + authkey + "@ondemand.saucelabs.com:80/wd/hub";
 	 static int n=0;
-public static void main(String[] args) throws MalformedURLException {
+public static void main(String[] args) throws MalformedURLException, ParseException {
 //	DesiredCapabilities caps = DesiredCapabilities.firefox();
 //    caps.setCapability("platform", "Windows 10");
 //    caps.setCapability("version", "59");
